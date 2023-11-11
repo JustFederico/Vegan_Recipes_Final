@@ -1,7 +1,7 @@
 // server/src/controllers/recipeController.js
 import { RecipeModel } from '../models/Recipe.js';
 
-const createRecipe = async (req, res) => {
+export const createRecipe = async (req, res) => {
   try {
     const { title, description, ingredients, instructions, imageUrl, createdBy } = req.body;
 
@@ -21,6 +21,77 @@ const createRecipe = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-export default createRecipe;
+
+
+
+// Get all recipes
+export const getAllRecipes = async (req, res) => {
+  try {
+    const recipes = await RecipeModel.find();
+    res.status(200).json(recipes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+// Get a specific recipe by ID
+export const getRecipeById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const recipe = await RecipeModel.findById(id);
+    
+    if (!recipe) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    res.status(200).json(recipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+// Update a specific recipe by ID
+export const updateRecipe = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedRecipe = await RecipeModel.findByIdAndUpdate(
+      id,
+      { $set: req.body },
+      { new: true }
+    );
+
+    if (!updatedRecipe) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    res.status(200).json(updatedRecipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+// Delete a specific recipe by ID
+export const deleteRecipe = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedRecipe = await RecipeModel.findByIdAndDelete(id);
+
+    if (!deletedRecipe) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    res.status(200).json({ message: 'Recipe deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
 
 // MongoDB collection "recipes" will be populated with documents based on the RecipeSchema structure
