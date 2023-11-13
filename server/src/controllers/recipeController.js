@@ -30,7 +30,7 @@ export const getAllRecipes = async (req, res) => {
     const recipes = await RecipeModel.find();
     res.status(200).json(recipes);
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: 'Server Error' });
   }
 };
@@ -48,7 +48,7 @@ export const getRecipeById = async (req, res) => {
 
     res.status(200).json(recipe);
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: 'Server Error' });
   }
 };
@@ -60,11 +60,11 @@ export const updateRecipe = async (req, res) => {
   try {
     const updatedRecipe = await RecipeModel.findByIdAndUpdate(
       id,
-      { $set: req.body },
-      { new: true }
+      { $set: req.body },//an update operator-sets the values of the fields in the update/req.bodycontains the updated data
+      { new: true }//returns the modified document
     );
 
-    if (!updatedRecipe) {
+    if (!updatedRecipe) {//falsy (null or undefined???
       return res.status(404).json({ message: 'Recipe not found' });
     }
 

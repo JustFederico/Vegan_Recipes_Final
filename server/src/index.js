@@ -18,12 +18,27 @@ app.use(cors());
 
 // routes
 app.use("/auth", userRouter);
-app.use('/api', recipeRoutes);
+app.use('/recipes', recipeRoutes);
+
+
+const PORT = process.env.PORT || 3003;
 
 mongoose.connect(
         "mongodb+srv://waspa:9VugLFozf2n3kN9E@cluster0.s3ex7dj.mongodb.net/app_nov"
         );
 
-app.listen(3003, () => console.log("Server Started"));
+app.listen(3003, () => console.log("Server Started"));  
 
+
+// const PORT = process.env.PORT || 3003;
+
+// mongoose.connect(process.env.MONGO_URL, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+//   .then(() => {
+//     console.log('Connected to MongoDB');
+//     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+//   })
+//   .catch((error) => console.error('Error connecting to MongoDB:', error)); 
 
