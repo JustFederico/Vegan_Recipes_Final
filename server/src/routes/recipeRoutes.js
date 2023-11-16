@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import {
-//   createRecipe,
+createRecipe,
   getAllRecipes,
   getRecipeById,
 //   updateRecipe,
@@ -16,9 +16,9 @@ const router = express.Router();
 //retrieving all recipes
 // router.get('/', getAllRecipes);
 
-router.get('/recipes', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const recipes = await RecipeModel.find();
+        const recipes = await RecipeModel.find({}); // {empty object}..returns all of documents in collection, cause we dont hv no conditions of what we wantto find in recipes
         res.status(200).json(recipes);
       } catch (error) {
         console.log(error);
@@ -30,7 +30,7 @@ router.get('/recipes', async (req, res) => {
 
 
 
-router.get('/recipes/:id', getRecipeById);
+router.get('/:id', getRecipeById);
 
 
 // router.put('/recipes/:id', updateRecipe);
@@ -58,8 +58,8 @@ export default router;
 //   }
 // });
 
-// // Create a new recipe
-// router.post("/", verifyToken, async (req, res) => {
+// Create a new recipe
+// router.post("/create", verifyToken, async (req, res) => {
 //   const recipe = new RecipesModel({
 //     _id: new mongoose.Types.ObjectId(),
 //     name: req.body.name,
@@ -67,8 +67,8 @@ export default router;
 //     ingredients: req.body.ingredients,
 //     instructions: req.body.instructions,
 //     imageUrl: req.body.imageUrl,
-//     cookingTime: req.body.cookingTime,
-//     userOwner: req.body.userOwner,
+//     // cookingTime: req.body.cookingTime,
+//     // userOwner: req.body.userOwner,
 //   });
 //   console.log(recipe);
 
@@ -140,3 +140,23 @@ export default router;
 // });
 
 // export { router as recipesRouter };
+
+
+
+// {
+//     "title": "Vegan Chickpea Curry",
+//     "description": "A delicious and nutritious vegan chickpea curry.",
+//     "ingredients": [
+//       "1 can of chickpeas, drained and rinsed",
+//       "1 onion, chopped",
+//       "2 cloves of garlic, minced",
+//       "1 can of coconut milk",
+//       "1 cup of spinach, chopped",
+//       "1 tablespoon of curry powder",
+//       "1 teaspoon of turmeric",
+//       "Salt and pepper to taste",
+//       "2 tablespoons of olive oil"
+//     ],
+//     "instructions": "1. Heat olive oil in a pan. \n2. Add chopped onion and minced garlic, sauté until fragrant. \n3. Stir in curry powder and turmeric. \n4. Add chickpeas, coconut milk, and spinach. \n5. Simmer until the curry thickens and the flavors meld. \n6. Season with salt and pepper to taste. \n7. Serve over rice or with your favorite bread.",
+//     "imageUrl": "https://www.gimmesomeoven.com/wp-content/uploads/2022/09/Chickpea-Curry-8.jpg"
+//   }

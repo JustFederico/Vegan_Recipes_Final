@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -39,4 +39,20 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* ------------------------noframeimage-------------- */
+
+.flex-container {
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Center the items vertically */
+  margin-top: -50px; /* Move the entire container down or up */
+}
+
+.noframe-image {
+  width: 150%; /* Adjust the width as needed */
+  margin-left: -6cm; /* Move the image one cm to the right */
+  margin-bottom: 10px; /* Add margin for spacing */
+  /* Additional styling for the image if needed */
 }

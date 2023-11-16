@@ -95,3 +95,4 @@ export const deleteRecipe = async (req, res) => {
 
 
 // MongoDB collection "recipes" will be populated with documents based on the RecipeSchema structure
+// go to postman: http://localhost:3003/recipes/654f806d62081e564373fc75
