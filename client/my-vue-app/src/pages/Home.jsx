@@ -73,7 +73,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-// import BackgroundVideo from '../components/BackgroundVideo';
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -94,76 +93,78 @@ const Home = () => {
     fetchRecipes();
   }, []);
 
-  
-
   const signatureStyle = {
-    width: '40%', // Adjust the width as needed
-    marginTop: '50px', // Move the element down by 2 cm
-    marginBottom: '20px', // Add margin for spacing
-    // borderBottom: '2px solid green', // Add a thin green line under the text
-    
+    width: '40%',
+    marginTop: '50px',
+    marginBottom: '20px',
+    fontFamily: 'Finger Paint, sans-serif', // Apply the Finger Paint font
   };
 
   const noframeStyle = {
-    width: '150%', // Adjust the width as needed
-    marginTop: '-10px', // Move the element down or up
-    marginLeft: '-1cm', // Move the image one cm to the right
-    
-    marginBottom: '10px', // Add margin for spacing
-    // borderBottom: '2px solid green', // Add a thin green line under the text
-    
+    width: '150%',
+    marginTop: '-10px',
+    marginLeft: '-1cm',
+    marginBottom: '10px',
   };
 
   const recipesStyle = {
-    marginLeft: '3cm', // Move the image one cm to the right
-    width: '40%',    // Set the width to make it bigger
-    marginTop: '30px', // Move the element down or up
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginTop: '30px',
   };
 
-  
+  const recipeCardStyle = {
+    width: '30%',
+    marginBottom: '20px',
+    border: '2px solid green',
+    borderRadius: '8px',
+    overflow: 'hidden',
+  };
 
-  // const containerStyle = {
-  //   maxWidth: '800px',
-  //   margin: 'auto',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // };
+  const imageStyle = {
+    width: '100%',
+    height: 'auto',
+    borderRadius: '8px 8px 0 0',
+  };
+
+  const textContainerStyle = {
+    padding: '15px',
+  };
 
   return (
-    <div style={{ 
-      maxWidth: '800px',
-      margin: 'auto'
-        }}>
-    
-    {/* Images jpgs */}
-       <div style={{ textAlign: 'center' }}>
+    <div style={{ maxWidth: '800px', margin: 'auto' }}>
+      {/* Font link for Finger Paint */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+      <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet" />
+
+      {/* Images jpgs */}
+      <div style={{ textAlign: 'center' }}>
         <img src="/signature.jpg" alt="signature" style={signatureStyle} />
       </div>
       <div className="flex-container" style={{ textAlign: 'center' }}>
-      <img src="/noframe.png" alt="noframe" style={noframeStyle} />
+        <img src="/noframe.png" alt="noframe" style={noframeStyle} />
       </div>
       {/* Featured Recipes */}
-      <div style={{ textAlign: 'center' }}>
-        <img src="recipes.jpg" alt="recipes" style={recipesStyle} />
-      </div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul className="recipe-container">
-          {recipes.map(recipe => (
-            <li key={recipe._id} className="recipe-card">
-              <h3>{recipe.title}</h3>
+      <div style={recipesStyle}>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          recipes.map(recipe => (
+            <div key={recipe._id} style={recipeCardStyle}>
               <Link to={`/recipe/${recipe._id}`}>
-                <img src={recipe.imageUrl} alt={recipe.title} />
+                <img src={recipe.imageUrl} alt={recipe.title} style={imageStyle} />
               </Link>
-            </li>
-          ))}
-        </ul>
-        
-      )}
-      {/* <div>{ <BackgroundVideo/> }</div> */}
+              <div style={textContainerStyle}>
+                <h3>{recipe.title}</h3>
+                <p>{recipe.description}</p>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

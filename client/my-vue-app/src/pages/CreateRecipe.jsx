@@ -13,14 +13,13 @@
 // export default CreateRecipe;
 
 //----------------------------------------------------------------------------------------------
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-export const CreateRecipe = () => {
+const CreateRecipe = () => {
   const userID = useGetUserID();
   const [cookies, _] = useCookies(["access_token"]);
   const [recipe, setRecipe] = useState({
@@ -72,8 +71,8 @@ export const CreateRecipe = () => {
 
   return (
     <div className="create-recipe">
-      <h2>Create Recipe</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 style={{ color: '#4caf50' }}>Create Recipe</h2>
+      <form onSubmit={handleSubmit} style={{ maxWidth: '500px', margin: 'auto' }}>
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -81,6 +80,7 @@ export const CreateRecipe = () => {
           name="name"
           value={recipe.name}
           onChange={handleChange}
+          style={{ width: '100%', marginBottom: '15px', padding: '8px' }}
         />
         <label htmlFor="description">Description</label>
         <textarea
@@ -88,6 +88,7 @@ export const CreateRecipe = () => {
           name="description"
           value={recipe.description}
           onChange={handleChange}
+          style={{ width: '100%', marginBottom: '15px', padding: '8px' }}
         ></textarea>
         <label htmlFor="ingredients">Ingredients</label>
         {recipe.ingredients.map((ingredient, index) => (
@@ -97,9 +98,14 @@ export const CreateRecipe = () => {
             name="ingredients"
             value={ingredient}
             onChange={(event) => handleIngredientChange(event, index)}
+            style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
           />
         ))}
-        <button type="button" onClick={handleAddIngredient}>
+        <button
+          type="button"
+          onClick={handleAddIngredient}
+          style={{ backgroundColor: '#4caf50', color: 'white', padding: '8px 12px', marginBottom: '15px' }}
+        >
           Add Ingredient
         </button>
         <label htmlFor="instructions">Instructions</label>
@@ -108,6 +114,7 @@ export const CreateRecipe = () => {
           name="instructions"
           value={recipe.instructions}
           onChange={handleChange}
+          style={{ width: '100%', marginBottom: '15px', padding: '8px' }}
         ></textarea>
         <label htmlFor="imageUrl">Image URL</label>
         <input
@@ -116,6 +123,7 @@ export const CreateRecipe = () => {
           name="imageUrl"
           value={recipe.imageUrl}
           onChange={handleChange}
+          style={{ width: '100%', marginBottom: '15px', padding: '8px' }}
         />
         <label htmlFor="cookingTime">Cooking Time (minutes)</label>
         <input
@@ -124,71 +132,17 @@ export const CreateRecipe = () => {
           name="cookingTime"
           value={recipe.cookingTime}
           onChange={handleChange}
+          style={{ width: '100%', marginBottom: '15px', padding: '8px' }}
         />
-        <button type="submit">Create Recipe</button>
+        <button
+          type="submit"
+          style={{ backgroundColor: '#4caf50', color: 'white', padding: '10px 15px' }}
+        >
+          Create Recipe
+        </button>
       </form>
     </div>
   );
 };
 
 export default CreateRecipe;
-
-
-//-----------------------------------------------------------------------------------------------
-
-// client/my-vue-app/src/pages/CreateRecipe.jsx
-// import React, { useState } from 'react';
-// import axios from 'axios';
-
-// const CreateRecipe = () => {
-//   const [recipeData, setRecipeData] = useState({ 
-//     title: '',
-//     description: '',
-//     ingredients: [],
-//     instructions: '',
-//     imageUrl: '',
-//     createdBy: /* User ID or reference */,
-//   });
-
-//   const handleInputChange = (e) => {
-//     setRecipeData({ ...recipeData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleIngredientChange = (e, index) => {
-//     const updatedIngredients = [...recipeData.ingredients];
-//     updatedIngredients[index] = e.target.value;
-//     setRecipeData({ ...recipeData, ingredients: updatedIngredients });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       // Make a request to the backend to create a new recipe
-//       const response = await axios.post('/api/recipes', recipeData);
-//       console.log('New Recipe Created:', response.data);
-
-//       // Optionally, you can redirect to the saved recipes page or take other actions
-//     } catch (error) {
-//       console.error('Error creating recipe:', error.response.data.message);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Create a New Recipe</h1>
-//       <form onSubmit={handleSubmit}>
-//         {/* Include form fields for title, description, ingredients, instructions, imageUrl */}
-//         <label>Title:</label>
-//         <input type="text" name="title" value={recipeData.title} onChange={handleInputChange} />
-
-//         {/* ... other form fields ... */}
-
-//         <button type="submit">Create Recipe</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default CreateRecipe;
-

@@ -17,9 +17,14 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
+const customFontStyle = {
+  fontFamily: 'Finger Paint, sans-serif',
+  color: 'lightgreen',
+};
+
 export const Auth = () => {
   return (
-    <div className="auth">
+    <div className="auth" style={customFontStyle}>
       <Login />
       <Register />
     </div>
@@ -54,7 +59,7 @@ export const Login = () => {
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2 style={customFontStyle}>Login</h2>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -73,7 +78,7 @@ export const Login = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" style={customFontStyle}>Login</button>
       </form>
     </div>
   );
@@ -102,7 +107,7 @@ export const Register = () => {
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit}>
-        <h2>Register</h2>
+        <h2 style={customFontStyle}>Register</h2>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -121,11 +126,10 @@ export const Register = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" style={customFontStyle}>Register</button>
       </form>
     </div>
   );
 };
-
 
 export default Register;

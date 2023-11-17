@@ -69,6 +69,8 @@ import { Routes, Route } from 'react-router-dom';
 
 
 import Navbar from './components/Navbar.jsx';
+import SearchBar from './components/SearchBar.jsx';
+import Footer from './components/Footer.jsx';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
 import CreateRecipe from './pages/CreateRecipe';
@@ -86,6 +88,8 @@ function App() {
   return (
     <div>
       <Navbar />
+      
+
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
@@ -93,6 +97,7 @@ function App() {
       <Route path="/saved-recipes" element={<SavedRecipes />} />
       <Route path="/recipe/:id" element={<RecipeDetail />} /> {/* New route for detailed recipe */}
     </Routes>
+    <Footer/>
     </div>
   );
 }
