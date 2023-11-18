@@ -78,10 +78,11 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  //await axios.get('${import.meta.env.VITE_BACKEND_URL}/recipes');
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get('http://localhost:3003/recipes');
+        const response = await axios.get("http://localhost:3003/recipes");//get("http://localhost:3003/recipes");
         setRecipes(response.data);
         setLoading(false);
       } catch (error) {

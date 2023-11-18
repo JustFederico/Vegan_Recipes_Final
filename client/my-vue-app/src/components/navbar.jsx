@@ -109,7 +109,7 @@ export const Navbar = () => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/auth" activeStyle={activeLinkStyle}>
-                Auth
+                Become a Member
               </NavLink>
             </li>
             <li className="nav-item">
@@ -119,7 +119,7 @@ export const Navbar = () => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/saved-recipes" activeStyle={activeLinkStyle}>
-                Saved Recipes
+                Recipes
               </NavLink>
             </li>
           </ul>

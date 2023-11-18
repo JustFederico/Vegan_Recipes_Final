@@ -210,7 +210,7 @@ const SavedRecipes = () => {
       {/* Font link for Finger Paint */}
       <link rel="stylesheet" href={fingerPaintFontLink} />
 
-      <h2 style={{ textAlign: 'center', color: '#4caf50' }}>Saved Recipes</h2>
+      <h2 style={{ textAlign: 'center', color: '#4caf50' }}>Recipes</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (

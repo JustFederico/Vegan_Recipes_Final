@@ -3,7 +3,7 @@ import { RecipeModel } from '../models/Recipe.js';
 
 export const createRecipe = async (req, res) => {
   try {
-    const { title, description, ingredients, instructions, imageUrl, createdBy } = req.body;
+    const { title, description, ingredients, instructions, imageUrl } = req.body;
 
     // Create a new recipe
     const newRecipe = await RecipeModel.create({
@@ -12,7 +12,7 @@ export const createRecipe = async (req, res) => {
       ingredients,
       instructions,
       imageUrl,
-      createdBy,
+      
     });
 
     res.status(201).json(newRecipe);

@@ -11,10 +11,20 @@ import { userRouter} from './routes/users.js';
 import recipeRoutes from './routes/recipeRoutes.js';
 
 const app = express();
+
+app.use(
+        cors({
+                origin: "*",
+                methods: ["GET", "POST", "PUT", "DELETE"],
+                allowedHeaders: ["Content-Type", "Authenticaction", "Acces-Control-Allow-Credentials"],
+                credentials: true,
+        })
+)
+
 dotenv.config();
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 // routes
 app.use("/auth", userRouter);

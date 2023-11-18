@@ -11,7 +11,7 @@ import { RecipeModel } from '../models/Recipe.js';
 const router = express.Router();
 
 // Endpoints for creating a new recipe
-// router.post('/recipes', createRecipe);
+ router.post('/', createRecipe);
 
 //retrieving all recipes
 // router.get('/', getAllRecipes);
