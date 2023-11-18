@@ -85,7 +85,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{ ...navbarStyle, ...customFontStyle }}>
       <div className="container">
-      <img src="/public/navbarUntitled-1.png" alt="Logo" style={logoStyle} />
+      <img src="/navbarUntitled-1.png" alt="Logo" style={logoStyle} />
         <NavLink className="navbar-brand" to="/" activeStyle={activeLinkStyle}>
           Vegan Life
         </NavLink>
